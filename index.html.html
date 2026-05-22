@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Евангелие от Иоанна 3:16 | Сайт-визитка</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url('https://i.ibb.co/93C0bpdd/istockphoto-1464383774-170667a.jpg');
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            font-family: 'Georgia', 'Times New Roman', Times, serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .verse-card {
+            max-width: 950px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(6px);
+            border-radius: 2rem;
+            padding: 2.5rem 2rem;
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+        }
+
+        .bible-verse {
+            font-size: 1.9rem;
+            line-height: 1.45;
+            font-weight: 600;
+            color: #1a2a1f;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.6);
+            font-family: 'Palatino', 'Georgia', 'Times New Roman', serif;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .verse-ref {
+            font-size: 1.5rem;
+            color: #1e3a1e;
+            font-style: italic;
+            border-top: 1px solid rgba(30, 58, 30, 0.4);
+            border-bottom: 1px solid rgba(30, 58, 30, 0.4);
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            margin-bottom: 2rem;
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 3rem;
+        }
+
+        .path-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: #0f2b0f;
+            margin: 1.8rem 0 1.5rem 0;
+            text-transform: uppercase;
+            font-family: 'Segoe UI', 'Georgia', serif;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+            text-align: center;
+        }
+
+        .btn-faith {
+            display: block;
+            background: #2c5f2d;
+            border: none;
+            padding: 0.9rem 2.2rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            font-family: inherit;
+            color: #ffffff;
+            border-radius: 3rem;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        .btn-faith:hover {
+            background: #1e3a1e;
+            transform: scale(1.03);
+        }
+
+        /* ===== РАЗДЕЛЫ (аккордеон) ===== */
+        .sections-container {
+            margin-top: 2rem;
+            display: none;  /* скрыт по умолчанию, появляется после нажатия на "Узнать больше" */
+        }
+
+        .accordion-item {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(4px);
+            border-radius: 1.5rem;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            background: rgba(44, 95, 45, 0.8);
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: white;
+            transition: background 0.2s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .accordion-header:hover {
+            background: rgba(30, 58, 30, 0.9);
+        }
+
+        .accordion-header .arrow {
+            font-size: 1.5rem;
+            transition: transform 0.2s;
+        }
+
+        .accordion-header.active .arrow {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            background: rgba(255, 255, 255, 0.9);
+            color: #1a2a1f;
+            padding: 0 1.5rem;
+        }
+
+        .accordion-content.show {
+            max-height: 800px;
+            padding: 1.5rem;
+        }
+
+        .prayer-text {
+            background: #f0f4e8;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            font-style: italic;
+            margin: 1rem 0;
+            line-height: 1.6;
+        }
+
+        .btn-pray {
+            background: #2c5f2d;
+            color: white;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 2rem;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            margin-top: 0.5rem;
+        }
+
+        .btn-pray:hover {
+            background: #1e3a1e;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            display: inline-block;
+            background: #2c5f2d;
+            color: white;
+            text-decoration: none;
+            padding: 0.7rem 1.2rem;
+            border-radius: 2rem;
+            transition: 0.2s;
+        }
+
+        .social-link:hover {
+            background: #1e3a1e;
+            transform: scale(1.05);
+        }
+
+        .small-note {
+            margin-top: 2rem;
+            font-size: 0.8rem;
+            color: #1a3b1a;
+            opacity: 0.8;
+            text-align: center;
+        }
+
+        @media (max-width: 700px) {
+            .verse-card { padding: 1.5rem; }
+            .bible-verse { font-size: 1.25rem; }
+            .verse-ref { font-size: 1.1rem; }
+            .path-title { font-size: 1.6rem; }
+            .accordion-header { font-size: 1rem; padding: 0.8rem 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="verse-card">
+    <div style="text-align: center;">
+        <div class="bible-verse">
+            «Ибо так возлюбил Бог мир, что отдал Сына Своего Единородного,<br>
+            дабы всякий, верующий в Него, не погиб, но имел жизнь вечную.<br>
+            Ибо не послал Бог Сына Своего в мир, чтобы судить мир,<br>
+            но чтобы мир спасен был чрез Него.»
+        </div>
+        
+        <div class="verse-ref">
+            ✝ Евангелие от Иоанна 3:16-17 ✝
+        </div>
+        
+        <div class="path-title">
+            Путь спасения
+        </div>
+        
+        <button class="btn-faith" id="learnMoreBtn">Узнать больше</button>
+    </div>
+
+    <!-- Контейнер с раскрывающимися разделами -->
+    <div id="sectionsContainer" class="sections-container">
+        
+        <!-- Раздел 1: О спасении -->
+        <div class="accordion-item">
+            <div class="accordion-header" data-accordion="1">
+                <span>📖 О спасении</span>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="accordion-content" id="accordionContent1">
+                <p><strong>Что значит «спасение»?</strong></p>
+                <p>Спасение — это примирение человека с Богом через Иисуса Христа. Все мы согрешили и отделены от Бога, но Христос умер за наши грехи и воскрес. Если ты поверишь в Него и примешь Его как своего Господа, ты получишь прощение и вечную жизнь.</p>
+                <p style="margin-top: 0.8rem;">📖 <strong>Римлянам 10:9</strong>: «Если устами твоими будешь исповедовать Иисуса Господом и сердцем твоим веровать, что Бог воскресил Его из мертвых, то спасешься».</p>
+                <p style="margin-top: 0.8rem;">Спасение — это не дела, а дар Божий, принимаемый верой. Бог ждёт тебя прямо сейчас.</p>
+            </div>
+        </div>
+
+        <!-- Раздел 2: Первый шаг (Молитва покаяния) -->
+        <div class="accordion-item">
+            <div class="accordion-header" data-accordion="2">
+                <span>🙏 Первый шаг: примириться с Богом</span>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="accordion-content" id="accordionContent2">
+                <p><strong>Молитва покаяния</strong></p>
+                <div class="prayer-text">
+                    «Господь Иисус, я признаю, что я грешник. Благодарю Тебя за то, что Ты умер за меня на кресте и воскрес. Прости мои грехи. Я открываю Тебе своё сердце и призываю Тебя в свою жизнь как Господа и Спасителя. Помоги мне жить для Тебя. Аминь.»
+                </div>
+                <button class="btn-pray" id="prayedBtn">✅ Я помолился</button>
+                <p id="prayConfirm" style="margin-top: 0.8rem; font-size: 0.9rem; color: #2c5f2d;"></p>
+            </div>
+        </div>
+
+        <!-- Раздел 3: Контакты -->
+        <div class="accordion-item">
+            <div class="accordion-header" data-accordion="3">
+                <span>✝ Контакты</span>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="accordion-content" id="accordionContent3">
+                <p>Свяжитесь с нами, если хотите задать вопрос или нуждаетесь в молитвенной поддержке:</p>
+                <div class="social-links">
+                    <a href="#" class="social-link" id="telegramLink">📱 Telegram</a>
+                    <a href="#" class="social-link" id="whatsappLink">💬 WhatsApp</a>
+                    <a href="#" class="social-link" id="vkLink">🌐 VK</a>
+                </div>
+                <p style="margin-top: 1rem; font-size: 0.9rem;">✝ «Носите бремена друг друга, и так исполните закон Христов» (Гал.6:2)</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="small-note">
+        «Верующий в Него не судится, а неверующий уже осуждён» (Ин 3:18)
+    </div>
+</div>
+
+<script>
+    // Показываем разделы при нажатии на "Узнать больше"
+    const learnBtn = document.getElementById('learnMoreBtn');
+    const sectionsContainer = document.getElementById('sectionsContainer');
+    let sectionsVisible = false;
+
+    learnBtn.addEventListener('click', function() {
+        if (!sectionsVisible) {
+            sectionsContainer.style.display = 'block';
+            learnBtn.textContent = 'Скрыть разделы';
+            sectionsVisible = true;
+            // Прокручиваем до разделов плавно
+            setTimeout(() => {
+                sectionsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
+        } else {
+            sectionsContainer.style.display = 'none';
+            learnBtn.textContent = 'Узнать больше';
+            sectionsVisible = false;
+        }
+    });
+
+    // Функция для аккордеона (открытие/закрытие разделов)
+    function setupAccordion() {
+        const headers = document.querySelectorAll('.accordion-header');
+        headers.forEach(header => {
+            header.addEventListener('click', function() {
+                const contentId = this.getAttribute('data-accordion');
+                const content = document.getElementById(`accordionContent${contentId}`);
+                
+                // Закрываем все остальные (если нужно, чтобы открывался только один — раскомментировать)
+                // document.querySelectorAll('.accordion-content').forEach(c => {
+                //     if (c !== content) {
+                //         c.classList.remove('show');
+                //         c.previousElementSibling.classList.remove('active');
+                //     }
+                // });
+                
+                content.classList.toggle('show');
+                this.classList.toggle('active');
+            });
+        });
+    }
+
+    setupAccordion();
+
+    // Кнопка "Я помолился"
+    const prayedBtn = document.getElementById('prayedBtn');
+    const prayConfirm = document.getElementById('prayConfirm');
+    
+    prayedBtn.addEventListener('click', function() {
+        prayConfirm.innerHTML = '🙌 Слава Богу! Ангелы радуются на небесах. Если ты искренне помолился, ты спасён. Напиши нам, если хочешь получить Библию или помощь.';
+        prayedBtn.disabled = true;
+        prayedBtn.style.opacity = '0.6';
+    });
+
+    // Ссылки на соцсети (замени на свои реальные ссылки)
+    document.getElementById('telegramLink').addEventListener('click', function(e) {
+        e.preventDefault();
+        window.open('https://t.me/ваш_telegram', '_blank');
+    });
+    document.getElementById('whatsappLink').addEventListener('click', function(e) {
+        e.preventDefault();
+        window.open('https://wa.me/79123456789', '_blank'); // замени на номер
+    });
+    document.getElementById('vkLink').addEventListener('click', function(e) {
+        e.preventDefault();
+        window.open('https://vk.com/ваш_vk', '_blank');
+    });
+</script>
+</body>
+</html>
